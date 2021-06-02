@@ -1,0 +1,253 @@
+:root{
+  --nav-bg: rgb(20,20,20);
+  --bg:#141414;
+  --font-color:#e5e5e5;
+  --font-hover-color:#fff;
+}
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+#root{
+  background-color: #141414;
+}
+.App{
+  background: var(--bg);
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden
+}
+/* Nav Component Start */
+.Nav{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 10px 30px;
+  position: fixed;
+  top: 0;
+  background: transparent;
+  line-height: 1.2;
+  text-align: center;
+  align-items: center;
+  z-index: 1;
+}
+.active{
+  color:red;
+}
+.logo{
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  align-items: center;
+}
+.logo img, .user-logo img{
+  height: 40px;
+  width: auto;
+  background: transparent;
+}
+.nav-options{
+  padding: 0 20px;
+
+}
+.nav-item{
+  font-size: 1.5rem;
+  padding: 0 15px;
+  text-decoration: none;
+  color:var(--font-color)
+}
+/* Nav Component End */
+/* Carousel Component Start */
+.slider{
+  width: 100%;
+  white-space: nowrap;
+  position: relative;
+  overflow: visible;
+  height: 289px;
+}
+.Carousel{
+  display: block;
+  scroll-behavior: smooth;
+  padding: 35px 4%;
+  white-space: nowrap;
+  overflow-x: hidden;
+}
+
+.list{
+  display: flex;
+  height: auto;
+  overflow: visible;
+  
+}
+.list:hover .item{
+  transform: translateX(-25%);
+}
+.item:hover ~ .item{
+  transform: translateX(25%);
+} 
+.item:nth-child(1):hover ~ .item{
+  transform:translateX(50%)
+}
+.item:nth-child(20){
+  order: 1;
+}
+
+
+
+.item:hover{
+  transform: scale(1.5) !important;
+  
+}
+
+.item{
+  display: flex;
+  position: relative;
+  padding: 0 4px;
+  flex: 0 0 19.7%;
+  transition: transform 300ms ease 100ms;
+  width: 100%;
+  z-index: 1;
+}
+.item img{
+  display: block;
+  width: 100%;
+  pointer-events: none;
+}
+/* .item:hover{
+  transform: scale(1.2);
+  z-index: 1;
+}
+.item:hover ~ .item{
+  transform: translateX(25%);
+} */
+.prev, .next{
+  position: absolute;
+  border: none;
+  font-size: 40px;
+  height: 49%;
+  padding: 3% 0px ;
+  line-height: 40px;
+  width: 2.5%;
+  color: #fff;
+  cursor: pointer;
+  z-index: 500;
+  transition: .2s ease all;
+  background: rgba(0, 0, 0, 50%);
+  top: 35px;
+}
+.prev{
+  left: 0;
+}
+.next{
+  right: 0;
+}
+.carousel-btns{
+  position: absolute;
+  height: -webkit-fill-available;
+  width: 98vw;
+  height: 100%;
+
+}
+.dots-container{
+  display: flex;
+  position: absolute;
+  top: -25px;
+  right:10px;
+}
+.dots{
+  text-align: center;
+  height: 20px;
+  width: 20px;
+  margin: 0 3px;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.dots::before{
+  content: "";
+  height: 5px;
+  width: 20px;
+  background: #d4d4d4;
+  transition: background 0.3s ease;
+}
+.info{
+  display: none;
+  justify-content: space-between;
+  font-size: 1rem;
+  background: rgba(0, 0, 0, 0.61);
+  color: var(--font-color);
+  position: absolute;
+  bottom: 0;
+  width: 97%;
+  height: 30px;
+  align-items: center;
+  cursor: pointer;
+}
+.info_title, .info_btn{
+  margin: 0 10px;
+}
+
+/* Carousel Component End */
+/* Landing Component Start  */
+.Landing{
+  background-repeat: no-repeat;
+  background-position:50%;
+  background-size: cover;
+  position: relative;
+  min-height: 100vh;
+}
+.carousel-wrapper{
+  position:absolute;
+  top:85%
+}
+.container{
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  top: 35%;
+  left: 30px;
+}
+.title, .description{
+  color:var(--font-color);
+}
+.title{
+  font-size: 3rem;
+}
+.description{
+  font-size: 1.2rem;
+  width: 70%;
+  padding: 10px 0;
+  font-weight: 300;
+}
+.btns button{
+  padding: 10px 40px;
+  margin: 10px 25px 0px 0px ;
+  border-radius: 5px;
+  -webkit-border-radius:5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+/* Landing Component End */
+/* TopRated Components Start */
+.TopRated{
+  padding: 10% 0 5% 0 ;
+  position: initial;
+}
+/* TopRated Components End */
+/* TvShow Component Start */
+.TvPopular{
+  padding: 10% 0 5% 0  ;
+}
+/* TvShow Component End */
+/* Movies Component Start */
+.Movies{
+  color: #d4d4d4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+  font-size: 3rem;
+}
+/* Movies Component End */
