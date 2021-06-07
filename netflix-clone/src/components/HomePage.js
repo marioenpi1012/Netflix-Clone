@@ -9,6 +9,7 @@ const HomePage = ({CarouselTitle, data}) => {
             data.filter((Element, index) => index == 0 ).map(trend => (
                     <Landing
                     title={trend.title}
+                    name={trend.name}
                     description={trend.overview}
                     image={trend.backdrop_path}
                     CarouselTitle={CarouselTitle}

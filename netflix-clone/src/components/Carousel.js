@@ -127,6 +127,7 @@ const Carousel = ({data}) => {
                         <div className="info">
                             <div className="info_title">
                             {data.title ? data.title : data.name}
+                            
                             </div>
                                 <FaInfoCircle className='info_btn_icon' />
                             </div>

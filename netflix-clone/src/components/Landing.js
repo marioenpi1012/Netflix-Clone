@@ -4,14 +4,14 @@ import {NavLink} from 'react-router-dom'
 import Carousel from './Carousel';
 import MovieInfo from './MovieInfo';
 
-const Landing = ({title, description, image, data, CarouselTitle}) => {
+const Landing = ({title, description, image, data, CarouselTitle, name}) => {
     const Click = () =>{
         MovieInfo.bind(data)
     }
     return (
         <div className='Landing' style={{backgroundImage:`url(https://image.tmdb.org/t/p/original${image})`}}>
             <div className="container">
-                <div className="title">{title}</div>
+                <div className="title">{title ? title : name}</div>
                 <div className="description">
                     {description}
                 </div>
