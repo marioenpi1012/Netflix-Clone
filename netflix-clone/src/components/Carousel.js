@@ -1,11 +1,13 @@
-import { FaLessThan, FaGreaterThan, FaPlayCircle  } from "react-icons/fa";
+import { FaLessThan, FaGreaterThan, FaPlayCircle, FaInfoCircle  } from "react-icons/fa";
 import {Children, useState, React, useRef} from 'react'
+import {NavLink} from 'react-router-dom'
 import styled from 'styled-components'
-import { wait } from "@testing-library/dom";
+import MovieInfo from "./MovieInfo";
 const Carousel = ({data}) => {
 
     const carousel = useRef(null)
     const list = useRef(null)
+    const item = useRef(null)
     const [currentPage, setCurrentPage] = useState(0)
     const allCarousel = document.querySelectorAll('.Carousel')
     let page = 0
@@ -16,9 +18,7 @@ const Carousel = ({data}) => {
         // get the target parent element (carousel-btns) and the the previous sibling (Carousel)
         const carousel = e.target.parentElement.previousSibling
         carousel.scrollLeft -= carousel.offsetWidth
-
         const prevBtn = document.getElementsByClassName('prev')
-        console.log(prevBtn)
         if(currentPage > 0){
             setCurrentPage(currentPage - 1 )
         }
@@ -57,6 +57,11 @@ const Carousel = ({data}) => {
         const info = e.target
         if (info.classList.contains('item')){
             info.firstElementChild.style.display = 'flex'
+            const title = info.getAttribute('data-title')
+            const description = info.getAttribute('data-description')
+            // console.log(title)
+            // console.log(description)
+
             
 
             if(!info.nextSibling){
@@ -88,6 +93,11 @@ const Carousel = ({data}) => {
             }
         
     }
+    const showDetails = (e) =>{
+        const title = e.target.parentElement.getAttribute('data-title')
+        MovieInfo.bind(title)
+        
+    }
     const [h, setH] = useState(false)
     const handleSetClick = (e) =>{
         setCurrentPage(e.target.getAttribute('data-index'))
@@ -107,14 +117,18 @@ const Carousel = ({data}) => {
                     {data.map(data =>(
                     
                         <div className="item"  
+                        ref={item}
                         onMouseEnter={itemHover} 
                         onMouseLeave={itemNotHover}
+                        data-title={data.title}
+                        data-description={data.overview}
 
-                        >
-                        
-                            <div className="info">
-                                <div className="info_title">{data.title ? data.title : data.name }</div>
-                                <FaPlayCircle className='info_btn' />
+                        >        
+                        <div className="info">
+                            <div className="info_title">
+                            {data.title ? data.title : data.name}
+                            </div>
+                                <FaInfoCircle className='info_btn_icon' />
                             </div>
                             <img src={`https://image.tmdb.org/t/p/w300${data.backdrop_path}`} />
                         </div>
@@ -122,10 +136,11 @@ const Carousel = ({data}) => {
                     ))}
                         
                 </div>
+                
             </div>
             <div className="carousel-btns" style={h?{display:'contents'}:{display:'none'}}>
                 
-                <div className="prev"  onClick={prev} style={currentPage == 0 ? {display:'none'} : {}} >
+                <div className="prev"  onClick={prev} style={currentPage == 0  ? {display:'none'} : {}} >
                     <FaLessThan style={{pointerEvents:'none'}}/>
                 </div>
                 <div className="next"  onClick={next}  >
@@ -133,6 +148,7 @@ const Carousel = ({data}) => {
                 </div>
                 
             </div>
+            
         </div>
     )
 }

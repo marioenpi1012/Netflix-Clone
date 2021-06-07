@@ -31,6 +31,7 @@
   text-align: center;
   align-items: center;
   z-index: 1;
+  background: rgba(20, 20, 20, 20%);
 }
 .active{
   color:red;
@@ -63,14 +64,19 @@
   white-space: nowrap;
   position: relative;
   overflow: visible;
-  height: 289px;
 }
 .Carousel{
   display: block;
   scroll-behavior: smooth;
   padding: 35px 4%;
   white-space: nowrap;
-  overflow-x: hidden;
+  overflow-x: scroll;
+  -ms-overflow-style:none;
+  scrollbar-width: none;
+}
+
+.Carousel::-webkit-scrollbar{
+  display: none;
 }
 
 .list{
@@ -102,29 +108,29 @@
 .item{
   display: flex;
   position: relative;
-  padding: 0 4px;
-  flex: 0 0 19.7%;
+  margin: 0 4px;
+  flex: 0 0 16.6%;
   transition: transform 300ms ease 100ms;
-  width: 100%;
   z-index: 1;
 }
 .item img{
   display: block;
-  width: 100%;
   pointer-events: none;
+  width: 100%;
+  height:120px;
 }
-/* .item:hover{
-  transform: scale(1.2);
-  z-index: 1;
+.carousel-btns{
+  position: absolute;
+  height: -webkit-fill-available;
+  width: 98vw;
+  height: 100%;
+
 }
-.item:hover ~ .item{
-  transform: translateX(25%);
-} */
 .prev, .next{
   position: absolute;
   border: none;
   font-size: 40px;
-  height: 49%;
+  height: 63%;
   padding: 3% 0px ;
   line-height: 40px;
   width: 2.5%;
@@ -140,13 +146,6 @@
 }
 .next{
   right: 0;
-}
-.carousel-btns{
-  position: absolute;
-  height: -webkit-fill-available;
-  width: 98vw;
-  height: 100%;
-
 }
 .dots-container{
   display: flex;
@@ -175,20 +174,30 @@
 .info{
   display: none;
   justify-content: space-between;
-  font-size: 1rem;
   background: rgba(0, 0, 0, 0.61);
   color: var(--font-color);
   position: absolute;
   bottom: 0;
-  width: 97%;
+  left: 0;
+  width: 100%;
   height: 30px;
   align-items: center;
   cursor: pointer;
-}
-.info_title, .info_btn{
-  margin: 0 10px;
+  pointer-events: none;
 }
 
+.info_title{
+  font-size: 12px;
+  margin: 0 5px;
+}
+.info_btn{
+  border: none;
+}
+.info_btn_icon{
+  color: var(--font-hover-color);
+  border: none;
+  pointer-events: all;
+}
 /* Carousel Component End */
 /* Landing Component Start  */
 .Landing{
@@ -198,19 +207,29 @@
   position: relative;
   min-height: 100vh;
 }
+.background-img img{
+  width: 100vw;
+  height: 100vh;
+}
 .carousel-wrapper{
   position:absolute;
-  top:85%
+  top:85%;
+  width: -webkit-fill-available;
 }
 .container{
   display: flex;
   position: absolute;
   flex-direction: column;
-  top: 35%;
-  left: 30px;
+  top: 53%;
+  height: max-content;
+  height: 47%;
+  background: rgba(27, 27, 27, 33%);
 }
 .title, .description{
   color:var(--font-color);
+}
+.description, .btns, .title {
+  margin: 0 30px;
 }
 .title{
   font-size: 3rem;
@@ -228,6 +247,7 @@
   -webkit-border-radius:5px;
   cursor: pointer;
   font-size: 1rem;
+  background: var(--font-hover-color);
 }
 /* Landing Component End */
 /* TopRated Components Start */
@@ -251,3 +271,97 @@
   font-size: 3rem;
 }
 /* Movies Component End */
+/* MovieInfo Component Start */
+.MovieInfo{
+  position: absolute;
+  top: 20%;
+
+}
+/* MovieInfo Component End */
+
+/* Responsive Design (Media Queries) */
+
+@media screen and (max-width: 1200px){
+  /* Landing Component Start */
+  .container{
+    top: 44%;
+    height: 57%;
+  }
+  .description{
+    width: 80%;
+  }
+  /* Landing Component End */
+  /* Carousel Component Start */
+  .item{
+    flex: 0 0 20%;
+  }
+  /* Carousel Component End */
+}
+
+@media screen and (max-width:800px){
+  /* Landing Component Start */
+  .description{
+    width: 90%;
+  }
+  /* Landing Component End */
+  /* Carousel Component Start */
+  .item{
+    flex: 0 0 25%;
+  }
+  /* Carousel Component End */
+}
+
+@media screen and (max-width:600px){
+  /* Nav Component Start */
+  .nav-item{
+    font-size: 1.3rem;
+  }
+  /* Nav Component End */
+  /* Landing Component Start */
+  .container{
+    bottom:20%;
+    top: unset;
+    height: unset;
+  }
+  .description{
+    display: none;
+  }
+  .btns{
+    display: flex;
+    
+  }
+  .btns button{
+    padding: 5px 20px;
+  }
+  /* Landing Component End */
+  /* Carousel Component Start */
+  .dots-container{
+    display: none;
+  }
+  .item{
+    flex:0 0 50% ;
+  }
+  .dots{
+    width: 10px;
+  }
+  .title{
+    font-size: 2rem;
+  }
+  .prev, .next{
+    width: 10.5%;
+
+  }
+  .info{
+    pointer-events: all;
+  }
+  .info .info_title{
+    font-size: .5rem;
+  }
+  /* Carousel Component End */
+  .TopRated{
+    margin: 15% 0;
+  }
+  .TvPopular{
+    margin: 20% 0 0;
+  }
+}

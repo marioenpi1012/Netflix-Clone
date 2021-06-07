@@ -8,6 +8,7 @@ import TopRated from './components/TopRated';
 import TvShows from './components/TvShows';
 import HomePage from './components/HomePage';
 import Movies from './components/Movies';
+import MovieInfo from './components/MovieInfo';
 function App() {
   const API_KEY = '5b253dd539029d7320fb78861a237b91'
 
@@ -30,7 +31,7 @@ function App() {
     const response = await fetch(`https://api.themoviedb.org/3/trending/all/week?api_key=${API_KEY}`)
     const trendingData = await response.json()
     setTrending(trendingData.results)
-    console.log(trending)
+    console.log(trendingData)
   }
 
   const GetTopRating = async () =>{
@@ -71,6 +72,9 @@ function App() {
         </Route>
         <Route  path='/movies' >
         <Movies />
+        </Route>
+        <Route path='/movie_info'>
+          <MovieInfo  />
         </Route>
         
       </div>
