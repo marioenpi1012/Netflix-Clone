@@ -17,6 +17,7 @@ function App() {
   const [tvOnAir, setTvOnAir] = useState([])  
   const [tvPopular, setTvPopular] = useState([])  
   const [tvTopRated, setTvTopRated] = useState([])  
+  const [movies, setMovies] = useState([])
 
   useEffect(() => {
     GetTrending()
@@ -24,6 +25,7 @@ function App() {
     GetTvShowsOnAir()
     GetTvShowsPopular()
     GetTvShowsTopRated()
+    GetMovies()
   },[])
 
 
@@ -38,25 +40,27 @@ function App() {
     const response = await fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}`)
     const topRatedData = await response.json()
     setTopRated(topRatedData.results)
-    console.log(topRated)
   }
   const GetTvShowsOnAir = async () =>{
     const response  = await fetch(`https://api.themoviedb.org/3/tv/on_the_air?api_key=${API_KEY}`)
     const tvOnAirData = await response.json()
     setTvOnAir(tvOnAirData.results)
-    console.log(tvOnAir)
   }
   const GetTvShowsPopular = async () =>{
     const response  = await fetch(`https://api.themoviedb.org/3/tv/popular?api_key=${API_KEY}`)
     const tvPopularData = await response.json()
     setTvPopular(tvPopularData.results)
-    console.log(tvPopular)
   }
   const GetTvShowsTopRated = async () =>{
     const response  = await fetch(`https://api.themoviedb.org/3/tv/top_rated?api_key=${API_KEY}`)
     const tvTopRatedData = await response.json()
     setTvTopRated(tvTopRatedData.results)
-    console.log(tvTopRated)
+  }
+  const GetMovies = async () =>{
+    const response = await fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}`)
+    const moviesData = await response.json()
+    setMovies(moviesData.results)
+    console.log(movies)
   }
 
   return (
@@ -71,7 +75,7 @@ function App() {
           <TvShows data={tvOnAir} tvPopular={tvPopular} topRated={tvTopRated} />
         </Route>
         <Route  path='/movies' >
-        <Movies />
+          <Movies data={movies} />
         </Route>
         <Route path='/movie_info'>
           <MovieInfo  />

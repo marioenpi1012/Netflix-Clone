@@ -100,6 +100,7 @@
 
 
 
+.item:focus,
 .item:hover{
   transform: scale(1.5) !important;
   
@@ -263,12 +264,7 @@
 /* TvShow Component End */
 /* Movies Component Start */
 .Movies{
-  color: #d4d4d4;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 500px;
-  font-size: 3rem;
+  height: 115vh;
 }
 /* Movies Component End */
 /* MovieInfo Component Start */

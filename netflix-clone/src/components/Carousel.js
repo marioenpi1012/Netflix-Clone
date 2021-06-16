@@ -1,5 +1,5 @@
 import { FaLessThan, FaGreaterThan, FaPlayCircle, FaInfoCircle  } from "react-icons/fa";
-import {Children, useState, React, useRef} from 'react'
+import {Children, useState, React, useRef, useEffect} from 'react'
 import {NavLink} from 'react-router-dom'
 import styled from 'styled-components'
 import MovieInfo from "./MovieInfo";
@@ -9,7 +9,15 @@ const Carousel = ({data}) => {
     const list = useRef(null)
     const item = useRef(null)
     const [currentPage, setCurrentPage] = useState(0)
+    const [touch, setTouch] = useState(false)
     const allCarousel = document.querySelectorAll('.Carousel')
+
+    useEffect(() => {
+        if('ontouchstart' in document.documentElement){
+        setTouch(!touch)
+    }
+    }, [])
+    
     let page = 0
     allCarousel.forEach(carousel => {
         page = Math.ceil(carousel.scrollWidth / carousel.clientWidth)
@@ -102,7 +110,11 @@ const Carousel = ({data}) => {
     const handleSetClick = (e) =>{
         setCurrentPage(e.target.getAttribute('data-index'))
     }
-
+    if('ontouchstart' in document.documentElement){
+        console.log('touch')
+    }else{
+        console.log('no-touch')
+    }
     return (
         <div className="slider" onMouseEnter={hover} onMouseLeave={notHover}>
             <div className="dots-container">

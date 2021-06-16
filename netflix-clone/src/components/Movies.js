@@ -1,12 +1,13 @@
 import React from 'react'
 import {Helmet} from 'react-helmet'
-const Movies = () => {
+import HomePage from './HomePage'
+const Movies = ({data}) => {
     return (
         <div className='Movies'>
             <Helmet>
                 <title>Movies</title>
             </Helmet>
-            Comming Soon...
+            <HomePage CarouselTitle='Movies' data={data} />
         </div>
     )
 }
