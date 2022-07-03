@@ -1,0 +1,22 @@
+@import "./colorVariables.module.scss";
+
+.showAll{
+    padding: 2rem 4vw;
+    margin-top: 7rem;
+    .title{
+        color: $font-color;
+        font-size:1.125rem;
+        text-transform: capitalize;
+    }
+    .items{
+        margin: 3vh auto 0;
+        width: 100%;
+        flex-wrap: nowrap;
+        div{
+            margin: 0 !important;
+            &:hover{
+                z-index: 100;
+            }
+        }
+    }
+}

@@ -9,6 +9,10 @@
   padding: 0;
   box-sizing: border-box;
 }
+body{
+  background-color: var(--bg);
+  font-family: "Inter", sans-serif;
+}
 #root{
   background-color: #141414;
 }
@@ -36,27 +40,9 @@
 .active{
   color:red;
 }
-.logo{
-  display: flex;
-  justify-content: space-between;
-  text-align: center;
-  align-items: center;
-}
-.logo img, .user-logo img{
-  height: 40px;
-  width: auto;
-  background: transparent;
-}
-.nav-options{
-  padding: 0 20px;
 
-}
-.nav-item{
-  font-size: 1.5rem;
-  padding: 0 15px;
-  text-decoration: none;
-  color:var(--font-color)
-}
+
+
 /* Nav Component End */
 /* Carousel Component Start */
 .slider{
@@ -201,55 +187,7 @@
 }
 /* Carousel Component End */
 /* Landing Component Start  */
-.Landing{
-  background-repeat: no-repeat;
-  background-position:50%;
-  background-size: cover;
-  position: relative;
-  min-height: 100vh;
-}
-.background-img img{
-  width: 100vw;
-  height: 100vh;
-}
-.carousel-wrapper{
-  position:absolute;
-  top:85%;
-  width: -webkit-fill-available;
-}
-.container{
-  display: flex;
-  position: absolute;
-  flex-direction: column;
-  top: 53%;
-  height: max-content;
-  height: 47%;
-  background: rgba(27, 27, 27, 33%);
-}
-.title, .description{
-  color:var(--font-color);
-}
-.description, .btns, .title {
-  margin: 0 30px;
-}
-.title{
-  font-size: 3rem;
-}
-.description{
-  font-size: 1.2rem;
-  width: 70%;
-  padding: 10px 0;
-  font-weight: 300;
-}
-.btns button{
-  padding: 10px 40px;
-  margin: 10px 25px 0px 0px ;
-  border-radius: 5px;
-  -webkit-border-radius:5px;
-  cursor: pointer;
-  font-size: 1rem;
-  background: var(--font-hover-color);
-}
+
 /* Landing Component End */
 /* TopRated Components Start */
 .TopRated{
@@ -259,7 +197,7 @@
 /* TopRated Components End */
 /* TvShow Component Start */
 .TvPopular{
-  padding: 10% 0 5% 0  ;
+  /* padding: 10% 0 5% 0  ; */
 }
 /* TvShow Component End */
 /* Movies Component Start */

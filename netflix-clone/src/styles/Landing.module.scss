@@ -1,0 +1,85 @@
+@import "./colorVariables.module.scss";
+.HomePage{
+    height: 100%;
+    position: relative;
+}
+.Landing{
+    background-repeat: no-repeat;
+    background-position:50%;
+    background-size: cover;
+    position: relative;
+    min-height: 100vh;
+    height: 100%;
+    .container{
+        display: flex;
+        justify-content: center;
+        position: relative;
+        flex-direction: column;
+        top: 53%;
+        height: max-content;
+        height: 85vh;
+        background-color: $landing-bg-color;
+        .title, .description{
+            color:$font-color;
+            }
+        .description, .btns, .title {
+            margin: 0 4rem;
+        }
+        .title{
+            font-size: 3rem;
+        }
+        .description{
+            font-size: 1.2rem;
+            width: 70%;
+            padding: 10px 0;
+            font-weight: 300;
+        }
+        .btns button{
+            -webkit-appearance:button;
+            -moz-appearance: button;
+            padding: 10px 40px;
+            margin: 10px 25px 0px 0px ;
+            -webkit-border-radius:5px;
+            -moz-border-radius:5px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            background:$gray-color;
+            color: $font-color;
+            &:first-child{
+                background: $red-color;
+            }
+
+                
+        }
+    
+    }
+    .banner{
+        position: absolute;
+        height:15rem;
+        background: linear-gradient(180deg,transparent,rgba(14,14,14,.6),#141414);
+        bottom: -0.5rem;
+        width: 100%;
+        pointer-events: none;
+    }
+    .carouselWrapper{
+        // position:absolute;
+        // top:85%;
+        width: -webkit-fill-available;
+        .title{
+            font-size: 1.2vw;
+            color: $font-color;
+            margin: 0.35rem 4rem;
+            cursor: pointer;
+        }
+
+    }
+
+}
+// .background-img img{
+//   width: 100vw;
+//   height: 100vh;
+// }
+
+
