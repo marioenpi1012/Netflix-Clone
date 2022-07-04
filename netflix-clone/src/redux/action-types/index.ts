@@ -9,6 +9,7 @@ export enum ActionType {
     COMEDY='comedy',
     HORROR='horror',
     ROMANCE='romance',
-    ADVENTURE='adventure'
+    ADVENTURE='adventure',
+    TRENDING='trending'
     
 }

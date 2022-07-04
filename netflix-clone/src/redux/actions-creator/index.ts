@@ -83,6 +83,14 @@ export const dispatchComedyMovies = (movies:[] = []) =>{
         })
     }
 }
+export const dispatchTrendingMovies = (movies:[] = []) =>{
+    return (dispatch:Dispatch<action>)=>{
+        dispatch({
+            type:ActionType.TRENDING,
+            payload:movies
+        })
+    }
+}
 export const dispatchMovieInfo = (open:Boolean, movie:{} = {}) =>{
     return (dispatch:Dispatch<action>)=>{
         dispatch({

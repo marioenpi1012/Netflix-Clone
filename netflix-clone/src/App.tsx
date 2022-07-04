@@ -1,6 +1,6 @@
 import './App.css';
 import Nav from './components/Nav'
-import {Route, useLocation} from 'react-router-dom'
+import {Route, useLocation, useParams} from 'react-router-dom'
 import {useState, useEffect} from 'react'
 import TopRated from './components/TopRated';
 import TvShows from './components/TvShows';
@@ -12,6 +12,7 @@ import { bindActionCreators } from 'redux';
 import {actionCreators} from './redux/index' 
 import { RootState } from './redux/reducer';
 import MovieInfo from './components/MovieInfo';
+import { SIGILL } from 'node:constants';
 const { AnimatePresence } =  require('framer-motion/dist/framer-motion');
 
 interface movieInfo{
@@ -23,12 +24,12 @@ interface movieInfo{
 const App:React.FC = () => {
   const dispatch = useDispatch()
   const location = useLocation()
-  console.log(location.pathname)
+  const category = useParams()
   const {
     dispatchTopRatedMovies, dispatchActionMovies, dispatchAnimationMovies, 
     dispatchPopularMovies,dispatchLatestMovies,dispatchUpcomingMovies,
     dispatchComedyMovies, dispatchHorrorMovies, dispatchRomanceMovies, 
-    dispatchAdventureMovies
+    dispatchAdventureMovies,dispatchTrendingMovies
   } = bindActionCreators(actionCreators, dispatch)
   const movieInfo:movieInfo = useSelector((state :RootState) => state.movieInfo)
   const API_KEY = '5b253dd539029d7320fb78861a237b91'
@@ -54,6 +55,17 @@ const App:React.FC = () => {
   const [showAll, setShowAll] = useState<any | null>([])
   const [showAllCategory, setShowAllCategory] = useState<any | null>([])
   const [title,setTitle] = useState('')
+
+  useEffect(()=>{
+    if(location.pathname === '/home/topRated'){
+      setShowAllCategory(topRated)
+      setTitle('Top rated')
+    }
+    else if(location.pathname === '/home/Trending'){
+      setShowAllCategory(trending)
+      setTitle('Trending')
+    }
+  },[location.pathname || showAllCategory])
   useEffect(() => {
     GetTrending()
     GetTopRating()
@@ -66,39 +78,47 @@ const App:React.FC = () => {
     GetAllMoviesCategory()
   },[])
 
-
+  const getArrayOfMovies = (data:any) =>{
+    const arrOfMovies:any[] = []
+    data?.map((movies:[])=>{ 
+      movies?.map((movie:{})=>{
+        arrOfMovies.push(movie)
+      })
+    })
+    return arrOfMovies
+  }
   const GetTrending = async () =>{
-    if(location.pathname === '/home/Trending'){
       const all = []
-      for(let i = 1; i< 21; i++){
+      for(let i = 1; i< 10; i++){
         const response = await fetch(`https://api.themoviedb.org/3/trending/all/week?api_key=${API_KEY}&page=${i}`)
-        const trendingData:{results:{},page:number} = await response.json()
-        all.push(trendingData.results)
+        const trendingData = await response.json()
+        if(trendingData.page === 1){
+          dispatchTrendingMovies(trendingData.results)
+        }else if(trendingData.page === i){
+          all.push(trendingData.results)
+        }
       }
-      setTitle('Trending')
-      setShowAllCategory(all)
-    }
+      setTrending(getArrayOfMovies(all))
     const response = await fetch(`https://api.themoviedb.org/3/trending/all/week?api_key=${API_KEY}`)
     const trendingData = await response.json()
     setTrending(trendingData.results)
   }
 
   const GetTopRating = async () =>{
-    if(location.pathname === '/home/topRated'){
-      const all = []
-      for(let i = 1; i < 21; i++ ){
-        const response = await fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&page=${i}`)
-        const topRatedData:{results:{},page:number} = await response.json()
+    const all = []
+    for(let i = 1; i < 10; i++ ){
+      const response = await fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&page=${i}`)
+      const topRatedData = await response.json()
+      if(topRatedData.page === 1){
+        dispatchTopRatedMovies(topRatedData.results)
+      }else if(topRatedData.page === i){
         all.push(topRatedData.results)
       }
-      setTitle('Top rated')
-      setShowAllCategory(all)
-    }else{
-      const response = await fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&`)
-      const topRatedData = await response.json()
-      setTopRated(topRatedData.results)
-      dispatchTopRatedMovies(topRatedData.results)
     }
+    setTopRated(getArrayOfMovies(all))
+    // setShowAllCategory(getArrayOfMovies(topRated))
+    console.log('--- Trending function ---')
+    console.log({topRated})
     
   }
   const GetTvShowsOnAir = async () =>{
@@ -167,25 +187,22 @@ const App:React.FC = () => {
     interface movies{
       page:number,
       results:{
-        [index:number]:[{}]
+        [i:number]:Array<{}>
       }
     }
     
-    const movies:movies = {page:1,results:{0:[{}]}}
-    allMovies?.map((MOVIES)=>{
-        MOVIES.results.map((movie:Movie, i:number)=>{
+    let index:number = 0
+    let page:number = 1
+    const moviesObj = {
+      [index]:{}
+    }
+    const movies:movies = {page:page,results:{[index]:[]}}
+    allMovies?.map((MOVIES, i:number)=>{
+        MOVIES.results.map((movie:Movie, j:number)=>{
             if(location.pathname === '/home/action'){
-              if(movie.genre_ids.includes(18)){//18 number for action
-                // movies.results(movie)
-                  if(movies.results[i].length < 20 && all.length< 20){
-                    movies.results[i].push(movie)
-                    console.log(movies)
-                  }
-                  else{
-                    all.push(movies)
-                  }
+              if(movie.genre_ids.includes(18) && all.length < 200){//18 number for action
+                all.push(movie)
               }
-              console.log({all})
               setShowAllCategory(all)
               setTitle('Action')
             }
@@ -207,8 +224,12 @@ const App:React.FC = () => {
             else if(movie.genre_ids.includes(12) && adventureMovies.length < 20){//12 number for adventure
               adventureMovies.push(movie)
             }
+          })
         })
-    })
+        
+        console.log('working', moviesObj)
+        console.log(movies)
+        
     setShowAll(allMovies)
     dispatchActionMovies(actionMovies)
     dispatchAnimationMovies(animationMovies)

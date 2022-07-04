@@ -11,7 +11,8 @@ interface initState{
     popular:[],
     latest:[],
     upcoming:[],
-    adventure:[]
+    adventure:[],
+    trending:[]
     
 }
 const init:initState ={
@@ -24,7 +25,8 @@ const init:initState ={
     comedy:[],
     horror:[],
     romance:[],
-    adventure:[]
+    adventure:[],
+    trending:[]
 
 }
 const moviesReducer = (state:initState = init, action:action) =>{
@@ -78,6 +80,11 @@ const moviesReducer = (state:initState = init, action:action) =>{
             return {
                 ...state,
                 adventure:action.payload,
+            }
+        case ActionType.TRENDING:
+            return {
+                ...state,
+                trending:action.payload,
             }
         default:
             return state

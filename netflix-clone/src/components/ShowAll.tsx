@@ -37,10 +37,8 @@ const ShowAll:React.FC<Props> = ({title, data, genres, imageConfig}) => {
             <div className={style.title}>{title}</div>
             <div className={style.items}>
                 {
-                    data?.map((movies:[])=>(
-                        movies.map((movie:Movie)=>(
-                            <Item key={movie.id} genres={genres} movie={movie} imageConfig={imageConfig} />
-                        ))
+                    data?.map((movie:Movie)=>(
+                        <Item key={movie.id} genres={genres} movie={movie} imageConfig={imageConfig} />
                     ))
                 }
             </div>
