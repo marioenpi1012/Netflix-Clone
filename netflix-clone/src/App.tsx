@@ -171,22 +171,28 @@ const App:React.FC = () => {
       }
     }
     
-    const movies:movies = {page:1,results:{0:[{}]}}
+    const movies:movies = {page:1, results:{0:[{}]}}
     allMovies?.map((MOVIES)=>{
-        MOVIES.results.map((movie:Movie, i:number)=>{
-            if(location.pathname === '/home/action'){
-              if(movie.genre_ids.includes(18)){//18 number for action
-                // movies.results(movie)
-                  if(movies.results[i].length < 20 && all.length< 20){
-                    movies.results[i].push(movie)
-                    console.log(movies)
-                  }
-                  else{
-                    all.push(movies)
-                  }
+      MOVIES.results.map((movie:Movie, i:number)=>{
+        if(location.pathname === '/home/action'){
+          if(movie.genre_ids.includes(18)){//18 number for action
+            for(let i:number = 0; i < movies.page; i++){
+              if(movies.page < 1){
+                console.log(movies.page, i)
+                if(movies.results[i].length < 20){
+                  movies.results[i].push(movie)
+                }else{
+                  console.log('working')
+                  movies.page = i + 2
+                }
+              }else{
+                movies.page = i + 2
               }
-              console.log({all})
-              setShowAllCategory(all)
+            }
+              }
+              all.push(movies)
+              console.log(all)
+              // setShowAllCategory(all)
               setTitle('Action')
             }
             if(movie.genre_ids.includes(18) && actionMovies.length < 20){//18 number for action
