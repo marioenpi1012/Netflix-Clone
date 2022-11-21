@@ -1,6 +1,5 @@
 import React from 'react'
 import {Helmet} from 'react-helmet'
-import HomePage from '../pages/HomePage'
 import {useParams} from 'react-router-dom'
 import Landing from './Landing'
 type Props = {
@@ -16,7 +15,7 @@ const Movies: React.FC<Props> = ({data, imageConfig, genres}) => {
             <Helmet>
                 <title>Movies</title>
             </Helmet>
-            <Landing imageConfig={imageConfig} genres={genres} CarouselTitle='Movies' data={data} />
+            {/* <Landing imageConfig={imageConfig} genres={genres} CarouselTitle='Movies' data={data} /> */}
         </>
     )
 }
