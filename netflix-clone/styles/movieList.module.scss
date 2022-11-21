@@ -1,0 +1,22 @@
+@import './colorVariables.module.scss';
+.movieList {
+    margin-top:8rem;
+    padding-left:4.25vw;
+    padding-right:4.25vw;
+    .title{
+        font-size:2rem;
+        color:$font-color
+    }
+    .list{
+        display: flex;
+        flex-wrap:wrap;
+        margin-top:2.5rem;
+        height: 100%;
+        .endPage{
+            width: 100%;
+        }
+        .item{
+            max-width:20%
+        }
+    }
+}

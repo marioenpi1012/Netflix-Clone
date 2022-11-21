@@ -1,0 +1,132 @@
+@import "./colorVariables.module.scss";
+$slider-padding:1.5rem;
+.slider{
+  width: 100%;
+  white-space: nowrap;
+  position: relative;
+  overflow: visible;
+  margin-bottom: 5rem;
+  a{
+    text-decoration: none;
+    color: $font-color;
+  }
+  .title{
+    color: $font-color;
+    font-size: 1rem;
+    margin: 0.45rem $slider-padding;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    div{
+      margin: 0 0.35rem;
+      a{
+        text-decoration: none;
+        color: $font-color;
+        font-size: 0.875rem;
+      }
+    }
+  }
+  .dotsContainer{
+      display: flex;
+      position: absolute;
+      top: -25px;
+      right:10px;
+      .dots{
+        text-align: center;
+        height: 20px;
+        width: 20px;
+        margin: 0 3px;
+        display:flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        &::before{
+          content: "";
+          height: 5px;
+          width: 20px;
+          background: $carousel-btn-bg-color;
+          transition: background 0.3s ease;
+        }
+      }
+    }
+  .prev{
+    left:0;
+    border-top-right-radius: 5%;
+    border-bottom-right-radius:5%;
+  }
+  .next{
+    right:0;
+    border-top-left-radius:5%;
+    border-bottom-left-radius:5%;
+  }
+  .prev,.next{
+    display: flex;
+    position: absolute;
+    width: $slider-padding - 0.25rem;
+    top: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    font-size: 1.125rem;
+    color: $font-color;
+    cursor: pointer;
+    z-index: 500;
+    transition: .2s ease all;
+    background: $prev-next-btn-color;
+    opacity: 0;
+    &:hover{
+      opacity:1;
+      ~ .list.swiper .swiper-pagination{
+        opacity: 1;
+      }
+    }
+  }
+  
+  .Carousel {
+    display: flex;
+    justify-content: center;
+    position:relative;
+    .list{
+      display: flex;
+      width: calc(100% - (2 * $slider-padding));
+      overflow: visible;
+      position: relative;
+    &::-webkit-scrollbar{
+      display: none;
+    }
+    
+  }
+}
+}
+
+@media screen and (min-width:1024px){
+  $slider-padding:2.5rem;
+  .slider{
+    .prev, .next{
+      width: $slider-padding - 0.25rem;
+    }
+    .title{
+      margin: 0.45rem $slider-padding;
+      font-size:1.25rem;
+    }
+    .Carousel .list{
+       width: calc(100% - (2 * $slider-padding));
+    }
+  }
+}
+@media screen and (min-width:1440px){
+  $slider-padding:3.5rem;
+  .slider{
+    .prev, .next{
+      width: $slider-padding - 0.25rem;
+    }
+    .title{
+      margin: 0.45rem $slider-padding;
+    }
+    .Carousel .list{
+       width: calc(100% - (2 * $slider-padding));
+    }
+  }
+}

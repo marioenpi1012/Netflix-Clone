@@ -1,0 +1,48 @@
+@import "./colorVariables.module.scss";
+@import 'swiper/scss';
+@import 'swiper/scss/navigation';
+@import 'swiper/scss/pagination';
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color:$bg-color;
+    font-family:"Inter", sans-serif;
+    overflow-x: hidden;
+}
+// Swiper 
+.swiper {
+    &:hover{
+        .swiper-pagination{
+            opacity: 1;
+        }
+    }
+    .swiper-pagination{
+        top:-35px;
+        right:0;
+        left:auto !important;
+        bottom:auto !important;
+        -webkit-transform: none;
+        transform:none;
+        width:auto !important;
+        z-index: 1;
+        transition:opacity 0.2s ease-out;
+        opacity: 0;
+        &-bullet-active{
+            background-color: $font-color;
+        }
+        .swiper-pagination-bullet{
+            -webkit-border-radius:0;
+            -moz-border-radius:0;
+            border-radius:0;
+            width:0.75rem;
+            height:0.25rem;
+            margin:0 !important;
+            margin-left: 2px !important;
+        }
+    }
+}
