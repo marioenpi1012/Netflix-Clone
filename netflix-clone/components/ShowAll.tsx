@@ -31,14 +31,13 @@ interface location{
 }
 const ShowAll:React.FC<Props> = ({title, data, genres}) => {
     console.log(data)
-
     return (
         <div className={style.showAll}>
             <div className={style.title}>{title}</div>
             <div className={style.items}>
                 {
                     data?.map((movie:Movie)=>(
-                        <Item key={movie.id} genres={genres} movie={movie}  />
+                        <Item key={movie.id} movie={movie}  />
                     ))
                 }
             </div>
