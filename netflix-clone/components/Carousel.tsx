@@ -11,9 +11,9 @@ import {useRouter} from 'next/router'
 import SwiperCore, { Navigation, Pagination } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
-import 'swiper/css/pagination'
-import 'swiper/css/navigation'
-SwiperCore.use([Navigation, Pagination])
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+SwiperCore.use([Navigation, Pagination]);
 interface state{
     loading:Boolean,
     error:string,
@@ -33,16 +33,6 @@ const Carousel: React.FC<myProps & props> = ({props}) => {
     const {loading, error, data} = state
     const [hasBeenClicked, setHasBeenClicked] = useState(false)
     const { pathname } = useRouter()
-    
-    const hover  = (e:any) =>{
-        setH(true)
-    }
-    const notHover = (e:any) =>{
-        setH(false)
-    }
-    const [h, setH] = useState(false)
-    
-    
     const textMotion = {
         rest:{
             opacity:0,
@@ -88,36 +78,40 @@ const Carousel: React.FC<myProps & props> = ({props}) => {
     const navigationNextRef = useRef(null)
     const width = 390
     const customSwiperParams = {
-        observer:true,
-        observeParents:true,
-        navigation: {
+        observer: true,
+        observeParents: true,
+		navigation: {
 			prevEl: navigationPrevRef.current,
 			nextEl: navigationNextRef.current,
 		},
-        pagination:true,
-        loopAdditionalSlides: width >= 1378 ? 5 : width >= 998 ? 3 : width >= 625 ? 2 : 2,
-        loop:true,
-        breakpoints:{
-            1378:{slidesPerView:6, slidesPerGroup:6},
-            998:{slidesPerView:4, slidesPerGroup:4},
-            625:{slidesPerView:3, slidesPerGroup:3},
-            330:{slidesPerView:2, slidesPerGroup:2},
-            0:{slidesPerView:1.25, slidesPerGroup:1.25}
-        },
-        grabCursor:false,
-        draggable:false,
-        preventClicksPropagation:true,
-        preventClicks:true,
-        slideToClickedSlide:false,
-        allowTouchMove:true,
+		breakpoints:{
+			1378: { slidesPerView: 6, slidesPerGroup: 6 },
+			998: { slidesPerView: 4, slidesPerGroup: 4 },
+			625: { slidesPerView: 3, slidesPerGroup: 3 },
+			330: { slidesPerView: 2, slidesPerGroup: 2 },
+			0: { slidesPerView: 1.5, slidesPerGroup: 1.5 }
+		},
+		// loopAdditionalSlides: width >= 1378 ? 5 : width >= 998 ? 3 : width >= 625 ? 2 : 2,
+		pagination: true,
+		loop:false,
+		grabCursor: false,
+		draggable: false,
+		preventClicksPropagation: true,
+		preventClicks: true,
+		slideToClickedSlide: false,
+		allowTouchMove: true
     }
     return (
         <div className={style.slider} >
+            {
+                !loading &&
             <Link  href='#'>
                 <motion.div variants={hoverMotion} initial="rest" animate='rest' whileHover='hover' className={style.title}>
                     {title} <motion.div variants={textMotion}> <span>show all</span> </motion.div>
                 </motion.div>
             </Link>
+            }
+
             {
             !loading && !error && (
             <div className={style.Carousel} >
@@ -138,17 +132,17 @@ const Carousel: React.FC<myProps & props> = ({props}) => {
                 <Swiper 
                     {...customSwiperParams}
                     className={style.list}
-                    onBeforeInit={(swiper)=>{
-                        swiper.params.navigation = {
-                            prevEl:navigationPrevRef.current,
-                            nextEl:navigationNextRef.current
-                        }
-                        }}
+                    // onBeforeInit={(swiper)=>{
+                    //     swiper.params.navigation = {
+                    //         nextEl:navigationNextRef.current,
+                    //         prevEl:navigationPrevRef.current
+                    //     }
+                    //     }}
                     >
                     {
                     !loading &&
                         data &&    
-                    data.map((movie:any) =>(
+                    data?.map((movie:any) =>(
                             <SwiperSlide key={movie.id}
                             >
                                 <Item key={movie.id} data={data} movie={movie}  />

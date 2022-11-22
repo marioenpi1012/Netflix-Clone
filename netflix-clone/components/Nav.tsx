@@ -5,9 +5,12 @@ import Logo from '../images/logo.png'
 import userLogo from '../images/user-logo.png'
 import style from '../styles/Nav.module.scss';
 import { FaCaretDown } from 'react-icons/fa'
+import { useRouter } from 'next/router'
+import NavLink from './NavLink'
 const Nav = () => {
     const [scrolled, setScrolled] = useState(false)
     const [open, setOpen] = useState(false)
+    const router = useRouter()
     useEffect(()=>{
         window.onscroll = function() {
             if(window.scrollY>= 10){
@@ -21,16 +24,16 @@ const Nav = () => {
     return (
         <nav className={style.Nav} style={scrolled ? {background:'black'} : {}}>
             <div className={style.logo}>
-                <Link href='/'>
+                <Link href='/browse'>
                     <a>
-                        <Image quality={100} src={Logo}  height='40px' width='40px' /> 
+                        <Image  src={Logo} /> 
                     </a>
                 </Link>
             </div>
             <div className={style.navOptions} style={open ? {display:'flex'} : {}} onClick={()=>setOpen(false)}>
-                <Link href='/browse' className={style.navItem} >Home</Link>
-                <Link href='/tvShows' className={style.navItem} >TV Shows</Link>
-                <Link href='/movies' className={style.navItem}>Movies</Link>
+                <NavLink location='/browse' name='Home' />
+                <NavLink location='/tvShows' name='Tv Shows' />
+                <NavLink location='/movies' name='Movies' />
             </div>
             <div className={style.navOptionsDropDown} onClick={()=>setOpen(!open)}>
                 <span>Discover</span>

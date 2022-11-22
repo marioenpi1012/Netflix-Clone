@@ -23,21 +23,10 @@ type Props ={
 }
 
 const App:NextPage<Props> = () => {
-  const dispatch = useDispatch()
   const [genres, setGenres] = useState<any | null>([])
-  const rows:[] = useRetrieveData('movies')
-  // const movieInfo:movieInfo = useSelector((state :RootState) => state.movieInfo)
-
-  console.log({rows})
-  // Page layout 
-  const Page :NextPageWithLayout = () =>{
-    return <div></div>
-  }
+  
     return (
       <div>
-        <AnimatePresence>
-          {/* { movieInfo.open && <MovieInfo  genres={genres} />} */}
-        </AnimatePresence>
         <HomePage genres={genres}  />
       </div>
   );

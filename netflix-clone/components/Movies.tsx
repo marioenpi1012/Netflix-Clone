@@ -1,21 +1,15 @@
 import React from 'react'
-import {Helmet} from 'react-helmet'
-import {useParams} from 'react-router-dom'
 import Landing from './Landing'
+import { useRetrieveData } from './hooks/useRetrieveData'
 type Props = {
-    data:[],
-    imageConfig:any,
+    imageConfig?:any,
     genres:[]
 }
-const Movies: React.FC<Props> = ({data, imageConfig, genres}) => {
-    const category = useParams()
-    console.log(category)
+const Movies: React.FC<Props> = ({imageConfig, genres}) => {
+    
     return (
         <>
-            <Helmet>
-                <title>Movies</title>
-            </Helmet>
-            {/* <Landing imageConfig={imageConfig} genres={genres} CarouselTitle='Movies' data={data} /> */}
+            
         </>
     )
 }

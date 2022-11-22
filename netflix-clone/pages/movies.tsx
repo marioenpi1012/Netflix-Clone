@@ -1,18 +1,41 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { useRetrieveCategory } from "../components/hooks/useRetrieveCategory";
+import React from 'react'
+import Landing from '../components/Landing'
+import { useRetrieveData } from '../components/hooks/useRetrieveData'
+import Carousel from '../components/Carousel'
+import Head from 'next/head'
+type Props = {
+    imageConfig?:any,
+    genres:[]
+}
+interface props{
+    title:string,
+    genre:string,
+    selector:any,
+    id:number
+}
+const Movies: React.FC<Props> = ({genres}) => {
+    const movies:[props] = useRetrieveData('movies');
 
-const Movies  = () =>{
-    const page = 1
-    const url = 'movies'
-    const categoryName = 'trending'
-    const categoryData = useRetrieveCategory(url, categoryName, page)
-    const preventUndefinedSelector = () => undefined
-    const selector = categoryData ? categoryData.selector : preventUndefinedSelector
-    const selectedGenre = useSelector(selector)
-    console.log(selectedGenre)
     return (
-        <div>Movies</div>
+        <div>
+            <Head>
+                <title>Narflix - Movies</title>
+            </Head>
+            {
+                movies && movies.map((props:props) =>(
+                    props.id === 0 &&
+                        <Landing
+                            key={props.id}
+                            props={props}
+                            />
+                ))
+            }
+            {
+                movies && movies.map(props =>(
+                    <Carousel key={props.id} props={props} />
+                ))
+            }
+        </div>
     )
 }
 

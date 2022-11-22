@@ -23,7 +23,6 @@ interface props{
 }
 const HomePage:React.FC<Props> = ({genres }) => {
     const movies:[props] = useRetrieveData('movies')
-    console.log({movies})
     return (
         <div className={style.HomePage}>
             {movies && movies.map(((props:props) =>(
@@ -38,11 +37,6 @@ const HomePage:React.FC<Props> = ({genres }) => {
             {movies && movies.map(props => (
                 <Carousel key={props.id} props={props} />
             ))}
-            {
-                // movies &&  movies.map(((props:props)=>(
-                //     <Carousel genres={genres} key={props.id} props={props} carouselTitle={props.title} category={props.genre} />
-                // )))
-            }
         </div>
     )
 }

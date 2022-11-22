@@ -1,13 +1,7 @@
 import {useState, useEffect} from 'react'
 import HomePage from '../components/Home';
-import {useDispatch, useSelector,} from 'react-redux'
-import { bindActionCreators } from 'redux';
-import {actionCreators, tvActionCreators} from '../redux/index' 
-import { RootState } from '../redux/reducer';
-import MovieInfo from '../components/MovieInfo';
 import {NextPage} from 'next'
-import {AnimatePresence} from 'framer-motion'
-import Router,  {useRouter} from 'next/router'
+import Head from 'next/head'
 import {useRetrieveData} from '../components/hooks/useRetrieveData'
 import React from 'react';
 import { genresList } from '../dispatchConfig'
@@ -21,7 +15,6 @@ type Props ={
 }
 
 const App:NextPage<Props> = () => {
-    const dispatch = useDispatch()
     const [genres, setGenres] = useState<any | null>([])
     const rows:any = useRetrieveData('movies')
     // Router.router?.push('/movieInfo')
@@ -32,6 +25,9 @@ const App:NextPage<Props> = () => {
     console.log({genres})
     return (
         <>
+            <Head>
+                <title>Narflix</title>
+            </Head>
             <HomePage genres={genres}  />
         </>
     );

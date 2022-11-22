@@ -17,9 +17,6 @@ const TvShows:React.FC = () => {
     const tvShows:[props] = useRetrieveData('tvshows')
     return (
         <div className='TvShows'>
-            <Head>
-                <title>TV Shows</title>
-            </Head>
             {tvShows && tvShows.map(props =>(
                 props.id === 0 &&
                 <Landing 

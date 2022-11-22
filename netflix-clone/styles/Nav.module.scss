@@ -19,6 +19,8 @@
         justify-content: space-between;
         text-align: center;
         align-items: center;
+        width:1rem;
+        height:1rem;
         
     }
     .navOptions {
@@ -37,18 +39,18 @@
         box-shadow: 0 8px 32px 0 rgb(31 38 135 / 37%);
         -webkit-backdrop-filter: blur(10px);
         backdrop-filter: blur(10px);
-        .navItem.active{
-            color: $red-hover-color;
-        }
-        a{
+        .navItem{
             font-size: 1.125rem;
             font-weight: 200;
             padding: 1rem 15px;
             text-decoration: none;
             color:$font-color;
             transition: color 0.2s ease-in-out;
+            &__active{
+                color:$red-hover-color;
+            }
             &:hover{
-                color: $white-color;
+                color: $nav-hover;
             }
         }
     }

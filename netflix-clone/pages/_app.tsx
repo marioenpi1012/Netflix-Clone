@@ -10,27 +10,15 @@ import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 import Layout from '../components/Layout'
 import { useRouter } from 'next/router'
-export type NextPageWithLayout<P = {}, IP = P> = NextPage<P,IP> &{
-    getLayout?:(page:ReactElement) =>ReactNode
-}
-type AppPropsWithLayout = AppProps & {
-    Component:NextPageWithLayout
-}
+import Head from 'next/head'
+
 const MyApp = ({ Component, pageProps}:AppProps) =>{
-    const  usePrevRoute = () =>{
-        const { asPath } = useRouter()
-        const ref = useRef<string | null>(null)
-
-        useEffect(()=>{
-            ref.current = asPath
-        },[asPath])
-
-        return ref.current
-    }
-    console.log(usePrevRoute())
     return (
         <Provider store={store}>
             <Layout>
+                <Head>
+                    <link rel='shortcut icon' href='/favicon.ico' sizes='12x12' />
+                </Head>
                 <Component {...pageProps} />
             </Layout>
         </Provider>

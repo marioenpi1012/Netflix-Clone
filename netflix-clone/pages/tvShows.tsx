@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux'
 import { useState } from 'react'
+import Head from 'next/head'
 import { RootState } from '../redux/reducer'
 import TvShows from '../components/TvShows'
 import React from 'react'
@@ -18,10 +19,11 @@ const tv_shows = () => {
     const [imagesConfiguration, setImagesConfiguration] = useState<imageProp>()
     const [genres, setGenres] = useState<any | null>([])
 
-    console.log({tvTrending})
-    
     return (
-        <>
+        <>  
+            <Head>
+                <title>Narflix - TV Shows</title>
+            </Head> 
             <TvShows />
         </>
     )
