@@ -15,7 +15,8 @@ export const useRetrieveData = (type:string) =>{
                 selectedArr = fetchMoviesData;
                 break
             case 'tvshows':
-                selectedArr = fetchTvShowsData
+                selectedArr = fetchTvShowsData;
+                break;
             default:
                 break;
         }

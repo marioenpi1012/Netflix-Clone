@@ -12,9 +12,10 @@ export const useRetrieveCategory = (sliceUrl:any,categoryName:any,page:number)=>
             case 'browse':
             case 'movies':
                 selectedArr = fetchMoviesData;
-                console.log('movies', selectedArr)
+                break;
             case 'tvShows':
-                selectedArr = fetchTvShowsData
+                selectedArr = fetchTvShowsData;
+                break;
             default:
                 break
         }
