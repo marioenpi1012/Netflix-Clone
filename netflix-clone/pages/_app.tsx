@@ -18,6 +18,7 @@ const MyApp = ({ Component, pageProps}:AppProps) =>{
             <Layout>
                 <Head>
                     <link rel='shortcut icon' href='/favicon.ico' sizes='12x12' />
+                    <meta name="google-site-verification" content="kpN-Cre4tK0fWTdFAkvv9hKbMVHr5F4ATjGiiYWJ8kk" />
                 </Head>
                 <Component {...pageProps} />
             </Layout>
