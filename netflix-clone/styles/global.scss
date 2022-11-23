@@ -1,5 +1,5 @@
 @import "./colorVariables.module.scss";
-
+@import "./Carousel.module.scss";
 
 *{
     margin: 0;
@@ -41,5 +41,14 @@ body{
             margin:0 !important;
             margin-left: 2px !important;
         }
+    }
+    
+}
+.swiper-button-disabled{
+    opacity: 0 !important;        
+}
+.Carousel_slider__83708 .Carousel_prev__py04_:hover,.Carousel_slider__83708 .Carousel_next__I4WSA:hover{
+    ~ .swiper .swiper-pagination{
+        opacity: 1;
     }
 }

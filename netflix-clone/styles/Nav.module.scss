@@ -57,13 +57,17 @@
     .navOptionsDropDown{
         color:$white-color;
         display:flex;
-        align-items:center;
+        align-items:flex-start;
         cursor:pointer;
+        &__icon{
+            margin-left:0.5rem;
+        }
     }
-    .logo a img, .userLogo a img{
-        height: 40px;
-        width: auto;
+    .userLogo {
+        height: 2rem;
+        width:2rem;
         background: transparent;
+        z-index: -1;
     }
 }
 

@@ -64,7 +64,7 @@ const Item:React.FC<Props> = ({movie}) => {
     const infoMotion ={
         rest:{
             opacity:0,
-            y:50,
+            y:'15%',
             transition:{
                 ease:"easeOut",
                 duration:0.4,

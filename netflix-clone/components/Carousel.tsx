@@ -2,7 +2,7 @@ import { FaLessThan, FaGreaterThan  } from "react-icons/fa";
 import { useState, useRef} from 'react'
 import {myProps} from 'myProps'
 import Link from 'next/link'
-import style from '../styles/Carousel.module.scss'
+import style from  '../styles/Carousel.module.scss'
 import Item from "./Item";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
@@ -118,7 +118,7 @@ const Carousel: React.FC<myProps & props> = ({props}) => {
                 <div 
                     className={style.prev} 
                     ref={navigationPrevRef}
-                    style={hasBeenClicked ? {opacity:1} : {opacity:0}}
+                    // style={hasBeenClicked ? {opacity:1} : {opacity:0}}
                     >
                     <FaLessThan />
                 </div>

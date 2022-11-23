@@ -37,7 +37,7 @@ const Nav = () => {
             </div>
             <div className={style.navOptionsDropDown} onClick={()=>setOpen(!open)}>
                 <span>Discover</span>
-                <FaCaretDown />
+                <FaCaretDown className={style.navOptionsDropDown__icon} />
             </div>
             <div className={style.userLogo}>
                 <Link href='/'>

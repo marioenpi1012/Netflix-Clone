@@ -1,15 +1,9 @@
 import '../styles/global.scss'
 import { Provider } from 'react-redux'
-import Nav from '../components/Nav'
 import {store} from '../redux/store'
-import React, { useEffect, useRef } from 'react'
-import { RootState } from '../redux/reducer'
-import { useSelector } from 'react-redux'
-import type { ReactElement, ReactNode} from 'react'
-import type { NextPage } from 'next'
+import React from 'react'
 import type { AppProps } from 'next/app'
 import Layout from '../components/Layout'
-import { useRouter } from 'next/router'
 import Head from 'next/head'
 
 const MyApp = ({ Component, pageProps}:AppProps) =>{

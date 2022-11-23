@@ -7,7 +7,8 @@ import { bindActionCreators } from 'redux'
 import { actionCreators } from '../redux'
 import {motion} from 'framer-motion'
 import {imageUrl} from '../requests'
-import { movieInfoClose } from '../redux/actions-creator/movieInfo.Actions'
+import { movieInfoClose } from '../redux/actions-creator/movieInfo.Actions';
+import { FaTimes } from 'react-icons/fa'
 type Props ={
     genres: [];
 }
@@ -82,10 +83,11 @@ const MovieInfo: React.FC<Props> = ({
                         whileTap={{scale:0.9}}
                         onClick={handleClick}
                         >
-                        X
+                        <FaTimes />
                     </motion.div>
                     <div className={style.image}>
                         <img src={`${imageUrl}/${backdrop_path ?? poster_path}`}  />
+                        <div className={style.image__shadow}></div>
                         <div className={style.btns}>
                             <motion.button whileHover={{scale:1.1}} whileTap={{scale:0.9}} className={style.play}>
                                 <FaPlay /> Play
@@ -106,27 +108,40 @@ const MovieInfo: React.FC<Props> = ({
                     </div>
                     <hr className={style.line}></hr>
                     <div className={style.generalInfo}>
-                        <div className={style.title}>
-                        Info on {title}
+                        <div className={style.title__container}>
+                            Info on <span className={style.title}>{title}</span>
                         </div>
-                        <div className={style.genres}>
-                        genres : 
-                        {
-                            genres.map((genre:Genre)=>(
-                                genre_ids?.includes(genre.id) && <div key={genre.id} > { genre.name }</div> 
-                                ))
-                            }
-                        </div>
-                        <div className={style.releaseDate}>
+                        <div className={style.movie__info}>
+                            <div className={style.title}>Genres:</div>
                             {
-                                release_date ? `Release date: ${release_date}` : `First air date: ${first_air_date}`
+                                genres.map((genre:Genre)=>(
+                                    genre_ids?.includes(genre.id) && <span className={style.description} key={genre.id} > { genre.name }</span> 
+                                    ))
                             }
                         </div>
-                        <div className={style.averageVote}>
-                            Average vote : {vote_average}
+                        <div className={style.movie__info}>
+                            {
+                                release_date ? (
+                                    <>
+                                        <div className={style.title}>Release Date:</div>
+                                        <span className={style.description}>{release_date}</span>
+                                    </>
+                                    ) 
+                                : (
+                                    <>
+                                        <div>First air date :</div> 
+                                        <span>{first_air_date}</span>
+                                    </>
+                                )        
+                            }
                         </div>
-                        <div className={style.originalLanguage}>
-                            Original language : {original_language}
+                        <div className={style.movie__info}>
+                            <div className={style.title}>Average vote:</div>
+                            <span className={style.description}>{vote_average}</span>
+                        </div>
+                        <div className={style.movie__info}>
+                            <div className={style.title}>Original language</div>
+                            <span className={style.description}>{original_language}</span>
                         </div>
                     </div>
                     </div>
